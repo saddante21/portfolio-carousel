@@ -15,42 +15,32 @@
 html, body {
     margin:0;
     padding:0;
+    width:100%;
     background:transparent;
     overflow:hidden;
-    font-family:Arial, sans-serif;
-}
-
-
-.wrapper {
-    width:100%;
 }
 
 
 .swiper {
     width:100%;
+    height:auto;
 }
 
 
 .swiper-wrapper {
-    align-items:flex-start;
+    align-items:center;
 }
 
 
-/* Responsive slide sizing */
-
 .swiper-slide {
-
-    width: calc((100% - 20px) / 3.15);
-
+    width:31.5%;
 }
 
 
 @media(max-width:900px){
 
     .swiper-slide {
-
-        width: calc((100% - 10px) / 2.15);
-
+        width:48%;
     }
 
 }
@@ -59,19 +49,11 @@ html, body {
 @media(max-width:600px){
 
     .swiper-slide {
-
-        width: calc(100% / 1.15);
-
+        width:90%;
     }
 
 }
 
-
-/* Video card */
-
-.card {
-    cursor:pointer;
-}
 
 
 .thumb {
@@ -79,8 +61,6 @@ html, body {
     width:100%;
 
     aspect-ratio:16 / 9;
-
-    position:relative;
 
     overflow:hidden;
 
@@ -102,74 +82,25 @@ html, body {
 }
 
 
-/* Play button */
 
-.play {
+.card {
 
-    position:absolute;
-
-    top:50%;
-
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-
-    width:55px;
-
-    height:55px;
-
-
-    background:rgba(0,0,0,.65);
-
-    border-radius:50%;
-
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-
-    opacity:0;
-
-    transition:.2s;
+    cursor:pointer;
 
 }
 
 
-.card:hover .play {
-
-    opacity:1;
-
-}
-
-
-.play svg {
-
-    width:24px;
-
-    fill:white;
-
-    margin-left:3px;
-
-}
-
-
-
-/* arrows */
 
 .swiper-button-next,
 .swiper-button-prev {
 
     color:white;
 
+    width:35px;
+
+    height:35px;
+
     background:rgba(0,0,0,.55);
-
-    width:36px;
-
-    height:36px;
 
     border-radius:50%;
 
@@ -179,71 +110,10 @@ html, body {
 .swiper-button-next:after,
 .swiper-button-prev:after {
 
-    font-size:13px;
+    font-size:12px;
 
 }
 
-
-
-/* Popup video */
-
-.modal {
-
-    display:none;
-
-    position:fixed;
-
-    inset:0;
-
-    background:rgba(0,0,0,.85);
-
-    z-index:9999;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-.modal-content {
-
-    width:90vw;
-
-    max-width:1100px;
-
-}
-
-
-.video {
-
-    aspect-ratio:16/9;
-
-}
-
-
-.video iframe {
-
-    width:100%;
-
-    height:100%;
-
-    border:0;
-
-}
-
-
-.close {
-
-    color:white;
-
-    font-size:38px;
-
-    text-align:right;
-
-    cursor:pointer;
-
-}
 
 
 </style>
@@ -254,8 +124,6 @@ html, body {
 <body>
 
 
-<div class="wrapper">
-
 <div class="swiper">
 
 <div class="swiper-wrapper" id="videos"></div>
@@ -265,34 +133,6 @@ html, body {
 
 <div class="swiper-button-next"></div>
 
-
-</div>
-
-</div>
-
-
-
-<div class="modal" id="modal">
-
-<div class="modal-content">
-
-<div class="close" onclick="closeVideo()">
-&times;
-</div>
-
-
-<div class="video">
-
-<iframe 
-id="player"
-allow="autoplay; fullscreen"
-allowfullscreen>
-</iframe>
-
-</div>
-
-
-</div>
 
 </div>
 
@@ -328,27 +168,13 @@ container.innerHTML += `
 
 <div class="swiper-slide">
 
-<div class="card" onclick="play('${id}')">
-
+<div class="card">
 
 <div class="thumb">
 
 <img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg">
 
-
-<div class="play">
-
-<svg viewBox="0 0 24 24">
-
-<path d="M8 5v14l11-7z"/>
-
-</svg>
-
 </div>
-
-
-</div>
-
 
 </div>
 
@@ -360,72 +186,19 @@ container.innerHTML += `
 
 
 
-
 new Swiper(".swiper", {
-
 
 loop:true,
 
-
 spaceBetween:10,
 
-
 slidesPerView:"auto",
-
 
 navigation:{
 
 nextEl:".swiper-button-next",
 
 prevEl:".swiper-button-prev"
-
-}
-
-
-});
-
-
-
-
-
-function play(id){
-
-document.getElementById("modal").style.display="flex";
-
-document.getElementById("player").src =
-`https://www.youtube.com/embed/${id}?autoplay=1`;
-
-}
-
-
-
-function closeVideo(){
-
-document.getElementById("modal").style.display="none";
-
-document.getElementById("player").src="";
-
-}
-
-
-
-document.getElementById("modal").onclick=function(e){
-
-if(e.target.id==="modal"){
-
-closeVideo();
-
-}
-
-};
-
-
-
-document.addEventListener("keydown",function(e){
-
-if(e.key==="Escape"){
-
-closeVideo();
 
 }
 
