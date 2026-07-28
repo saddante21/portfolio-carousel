@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Portfolio Carousel</title>
 
-<link
-rel="stylesheet"
+<link 
+rel="stylesheet" 
 href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
 
@@ -17,52 +18,72 @@ html, body {
     margin:0;
     padding:0;
     background:transparent;
+    overflow-x:hidden;
     font-family:Arial, sans-serif;
 }
 
+
 .wrapper {
     width:100%;
-    margin:0 auto;
 }
+
 
 .swiper {
     width:100%;
-    padding:10px 5px 25px;
+    padding:10px 0 20px;
 }
+
 
 .card {
     cursor:pointer;
     transition:0.3s ease;
 }
 
+
 .card:hover {
     transform:translateY(-5px);
 }
 
+
 .thumb {
+
     position:relative;
+    width:100%;
+    aspect-ratio:16/9;
     overflow:hidden;
     border-radius:12px;
-    aspect-ratio:16/9;
+
 }
 
+
 .thumb img {
+
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
+
     transition:0.3s ease;
+
 }
 
+
 .card:hover img {
-    transform:scale(1.04);
+
+    transform:scale(1.05);
+
 }
+
+
+/* Hover play button */
 
 .play {
 
     position:absolute;
+
     top:50%;
     left:50%;
+
     transform:translate(-50%,-50%);
 
     width:65px;
@@ -77,29 +98,24 @@ html, body {
     justify-content:center;
 
     opacity:0;
+
     transition:.25s;
+
 }
+
 
 .card:hover .play {
+
     opacity:1;
+
 }
 
+
 .play svg {
+
     width:28px;
     fill:white;
     margin-left:4px;
-}
-
-.title {
-
-    margin-top:12px;
-
-    font-size:18px;
-    font-weight:600;
-
-    color:inherit;
-
-    line-height:1.3;
 
 }
 
@@ -113,17 +129,18 @@ html, body {
 
     background:rgba(0,0,0,.55);
 
-    width:45px;
-    height:45px;
+    width:42px;
+    height:42px;
 
     border-radius:50%;
 
 }
 
+
 .swiper-button-next:after,
 .swiper-button-prev:after {
 
-    font-size:18px;
+    font-size:16px;
 
 }
 
@@ -148,11 +165,13 @@ html, body {
 
 }
 
+
 .modal-content {
 
-    width:min(1100px,90vw);
+    width:min(1200px,90vw);
 
 }
+
 
 .video {
 
@@ -160,15 +179,18 @@ html, body {
 
 }
 
+
 .video iframe {
 
     width:100%;
     height:100%;
-    border:0;
+
+    border:none;
 
     border-radius:12px;
 
 }
+
 
 .close {
 
@@ -199,6 +221,7 @@ html, body {
 
 
 <div class="swiper-button-prev"></div>
+
 <div class="swiper-button-next"></div>
 
 
@@ -213,13 +236,15 @@ html, body {
 <div class="modal-content">
 
 <div class="close" onclick="closeVideo()">
+
 &times;
+
 </div>
 
 
 <div class="video">
 
-<iframe
+<iframe 
 id="player"
 allow="autoplay; fullscreen"
 allowfullscreen>
@@ -242,122 +267,137 @@ allowfullscreen>
 
 const videos=[
 
-{
-title:"The Story Behind Reggie Miller",
-id:"9zLIPMK7x5k"
-},
+"9zLIPMK7x5k",
 
-{
-title:"The Curious Case of Kawhi Leonard",
-id:"UFh8sC6uN18"
-},
+"UFh8sC6uN18",
 
-{
-title:"The Story Behind Cooper Flagg",
-id:"_z3kABCV1IA"
-},
+"_z3kABCV1IA",
 
-{
-title:"Luka or SGA? Redrafting the LOADED 2018 NBA Draft!",
-id:"xiNwLR7lE14"
-},
+"xiNwLR7lE14",
 
-{
-title:"92 For No. 99 | The Most ABSURD Goal-Scoring Season In NHL History",
-id:"uCzvRHNZoQw"
-},
+"uCzvRHNZoQw",
 
-{
-title:"Trae GONE: Why Young Might've Played His LAST Game In Atlanta",
-id:"INgpcU4FheE"
-}
+"INgpcU4FheE"
 
 ];
+
 
 
 const container=document.getElementById("videos");
 
 
-videos.forEach(video=>{
+
+videos.forEach(id=>{
+
 
 container.innerHTML += `
 
+
 <div class="swiper-slide">
 
-<div class="card" onclick="play('${video.id}')">
+
+<div class="card" onclick="play('${id}')">
+
 
 <div class="thumb">
 
-<img src="https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg">
+
+<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg">
+
 
 <div class="play">
 
+
 <svg viewBox="0 0 24 24">
+
 <path d="M8 5v14l11-7z"/>
+
 </svg>
 
-</div>
 
 </div>
 
 
-<div class="title">
-${video.title}
 </div>
 
 
 </div>
 
+
 </div>
+
 
 `;
+
 
 });
 
 
 
+
 new Swiper(".swiper",{
 
-slidesPerView:2,
-
-spaceBetween:25,
 
 loop:true,
 
+
+slidesPerView:2,
+
+
+spaceBetween:25,
+
+
 navigation:{
+
 
 nextEl:".swiper-button-next",
 
 prevEl:".swiper-button-prev"
 
+
 },
+
 
 
 breakpoints:{
 
 
 0:{
+
 slidesPerView:1
+
 },
 
+
 768:{
+
 slidesPerView:2
+
 }
 
 
 }
+
 
 
 });
 
 
 
+
+
+
 function play(id){
+
 
 document.getElementById("modal").style.display="flex";
 
+
 document.getElementById("player").src =
+
 `https://www.youtube.com/embed/${id}?autoplay=1`;
+
+
 
 }
 
@@ -365,9 +405,12 @@ document.getElementById("player").src =
 
 function closeVideo(){
 
+
 document.getElementById("modal").style.display="none";
 
+
 document.getElementById("player").src="";
+
 
 }
 
@@ -375,17 +418,35 @@ document.getElementById("player").src="";
 
 document.getElementById("modal").onclick=function(e){
 
+
 if(e.target.id==="modal"){
 
 closeVideo();
 
 }
 
+
 };
+
+
+
+document.addEventListener("keydown",function(e){
+
+
+if(e.key==="Escape"){
+
+closeVideo();
+
+}
+
+
+});
+
 
 
 </script>
 
 
 </body>
+
 </html>
