@@ -20,15 +20,16 @@ html, body {
 }
 
 .wrapper {
-    width:100vw;
-    position:relative;
-    left:50%;
-    transform:translateX(-50%);
+    width:100%;
 }
 
 .swiper {
     width:100%;
-    padding:5px 0 15px;
+    padding:5px 0 10px;
+}
+
+.swiper-wrapper {
+    align-items:flex-start;
 }
 
 .card {
@@ -37,14 +38,14 @@ html, body {
 }
 
 .card:hover {
-    transform:scale(1.04);
+    transform:scale(1.03);
     z-index:2;
 }
 
 .thumb {
-    position:relative;
     width:100%;
-    aspect-ratio:16/9;
+    aspect-ratio:16 / 9;
+    position:relative;
     overflow:hidden;
     border-radius:8px;
 }
@@ -54,29 +55,25 @@ html, body {
     height:100%;
     object-fit:cover;
     display:block;
-    transition:.3s ease;
 }
 
-.card:hover img {
-    transform:scale(1.05);
-}
 
 .play {
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    
-    width:58px;
-    height:58px;
-    
-    border-radius:50%;
+
+    width:55px;
+    height:55px;
+
     background:rgba(0,0,0,.65);
-    
+    border-radius:50%;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    
+
     opacity:0;
     transition:.25s;
 }
@@ -86,19 +83,25 @@ html, body {
 }
 
 .play svg {
-    width:25px;
+    width:24px;
     fill:white;
     margin-left:3px;
 }
 
 
+/* arrows */
+
 .swiper-button-next,
 .swiper-button-prev {
+
     color:white;
     background:rgba(0,0,0,.55);
+
     width:38px;
     height:38px;
+
     border-radius:50%;
+
 }
 
 .swiper-button-next:after,
@@ -107,39 +110,57 @@ html, body {
 }
 
 
-/* Modal */
+/* video popup */
 
 .modal {
+
     display:none;
+
     position:fixed;
+
     inset:0;
-    background:rgba(0,0,0,.88);
+
+    background:rgba(0,0,0,.85);
+
     z-index:9999;
+
     align-items:center;
     justify-content:center;
+
 }
 
+
 .modal-content {
-    width:min(1200px,90vw);
+    width:min(1100px,90vw);
 }
+
 
 .video {
     aspect-ratio:16/9;
 }
 
+
 .video iframe {
+
     width:100%;
     height:100%;
-    border:none;
+
+    border:0;
+
     border-radius:10px;
+
 }
 
+
 .close {
+
     color:white;
-    font-size:38px;
+    font-size:40px;
     text-align:right;
     cursor:pointer;
+
 }
+
 
 </style>
 
@@ -155,8 +176,11 @@ html, body {
 
 <div class="swiper-wrapper" id="videos"></div>
 
+
 <div class="swiper-button-prev"></div>
+
 <div class="swiper-button-next"></div>
+
 
 </div>
 
@@ -172,15 +196,17 @@ html, body {
 &times;
 </div>
 
+
 <div class="video">
 
-<iframe 
+<iframe
 id="player"
 allow="autoplay; fullscreen"
 allowfullscreen>
 </iframe>
 
 </div>
+
 
 </div>
 
@@ -192,6 +218,7 @@ allowfullscreen>
 
 
 <script>
+
 
 const videos=[
 
@@ -246,14 +273,15 @@ new Swiper(".swiper", {
 
 loop:true,
 
-slidesPerView:3.35,
+slidesPerView:3.15,
 
-spaceBetween:8,
+spaceBetween:10,
 
 navigation:{
 nextEl:".swiper-button-next",
 prevEl:".swiper-button-prev"
 },
+
 
 breakpoints:{
 
@@ -261,12 +289,12 @@ breakpoints:{
 slidesPerView:1.15
 },
 
-768:{
-slidesPerView:2.25
+600:{
+slidesPerView:2.15
 },
 
-1200:{
-slidesPerView:3.35
+1100:{
+slidesPerView:3.15
 }
 
 }
@@ -285,6 +313,7 @@ document.getElementById("player").src =
 }
 
 
+
 function closeVideo(){
 
 document.getElementById("modal").style.display="none";
@@ -292,6 +321,7 @@ document.getElementById("modal").style.display="none";
 document.getElementById("player").src="";
 
 }
+
 
 
 document.getElementById("modal").onclick=function(e){
@@ -310,6 +340,7 @@ closeVideo();
 }
 
 });
+
 
 </script>
 
