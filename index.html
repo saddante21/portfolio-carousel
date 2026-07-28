@@ -7,10 +7,7 @@
 
 <title>Portfolio Carousel</title>
 
-<link 
-rel="stylesheet" 
-href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
 <style>
 
@@ -23,7 +20,10 @@ html, body {
 }
 
 .wrapper {
-    width:100%;
+    width:100vw;
+    position:relative;
+    left:50%;
+    transform:translateX(-50%);
 }
 
 .swiper {
@@ -33,11 +33,11 @@ html, body {
 
 .card {
     cursor:pointer;
-    transition:0.25s ease;
+    transition:.25s ease;
 }
 
 .card:hover {
-    transform:scale(1.03);
+    transform:scale(1.04);
     z-index:2;
 }
 
@@ -54,37 +54,30 @@ html, body {
     height:100%;
     object-fit:cover;
     display:block;
-    transition:0.3s ease;
+    transition:.3s ease;
 }
 
 .card:hover img {
     transform:scale(1.05);
 }
 
-
-/* Play button */
-
 .play {
-
     position:absolute;
     top:50%;
     left:50%;
-
     transform:translate(-50%,-50%);
-
+    
     width:58px;
     height:58px;
-
+    
     border-radius:50%;
-
     background:rgba(0,0,0,.65);
-
+    
     display:flex;
     align-items:center;
     justify-content:center;
-
+    
     opacity:0;
-
     transition:.25s;
 }
 
@@ -99,20 +92,13 @@ html, body {
 }
 
 
-/* Arrows */
-
 .swiper-button-next,
 .swiper-button-prev {
-
     color:white;
-
     background:rgba(0,0,0,.55);
-
     width:38px;
     height:38px;
-
     border-radius:50%;
-
 }
 
 .swiper-button-next:after,
@@ -124,56 +110,35 @@ html, body {
 /* Modal */
 
 .modal {
-
     display:none;
-
     position:fixed;
-
     inset:0;
-
     background:rgba(0,0,0,.88);
-
     z-index:9999;
-
     align-items:center;
-
     justify-content:center;
-
 }
 
 .modal-content {
-
     width:min(1200px,90vw);
-
 }
 
 .video {
-
     aspect-ratio:16/9;
-
 }
 
 .video iframe {
-
     width:100%;
     height:100%;
-
     border:none;
-
     border-radius:10px;
-
 }
 
 .close {
-
     color:white;
-
     font-size:38px;
-
     text-align:right;
-
     cursor:pointer;
-
 }
 
 </style>
@@ -190,11 +155,8 @@ html, body {
 
 <div class="swiper-wrapper" id="videos"></div>
 
-
 <div class="swiper-button-prev"></div>
-
 <div class="swiper-button-next"></div>
-
 
 </div>
 
@@ -209,7 +171,6 @@ html, body {
 <div class="close" onclick="closeVideo()">
 &times;
 </div>
-
 
 <div class="video">
 
@@ -232,23 +193,15 @@ allowfullscreen>
 
 <script>
 
-
 const videos=[
 
 "9zLIPMK7x5k",
-
 "UFh8sC6uN18",
-
 "_z3kABCV1IA",
-
 "xiNwLR7lE14",
-
 "S9fgV3Pd504",
-
 "uCzvRHNZoQw",
-
 "8tteYIf8mac",
-
 "INgpcU4FheE"
 
 ];
@@ -293,9 +246,9 @@ new Swiper(".swiper", {
 
 loop:true,
 
-slidesPerView:3.15,
+slidesPerView:3.35,
 
-spaceBetween:10,
+spaceBetween:8,
 
 navigation:{
 nextEl:".swiper-button-next",
@@ -309,11 +262,11 @@ slidesPerView:1.15
 },
 
 768:{
-slidesPerView:2.15
+slidesPerView:2.25
 },
 
 1200:{
-slidesPerView:3.15
+slidesPerView:3.35
 }
 
 }
@@ -332,7 +285,6 @@ document.getElementById("player").src =
 }
 
 
-
 function closeVideo(){
 
 document.getElementById("modal").style.display="none";
@@ -340,7 +292,6 @@ document.getElementById("modal").style.display="none";
 document.getElementById("player").src="";
 
 }
-
 
 
 document.getElementById("modal").onclick=function(e){
@@ -359,7 +310,6 @@ closeVideo();
 }
 
 });
-
 
 </script>
 
